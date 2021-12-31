@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'src.com'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	lombokVersion     = "1.18.20"
+	springfoxVersion = "3.0.0"
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:thymeleaf-extras-springsecurity5'
+	// runtime 'mysql:mysql-connector-java'
+	// implementation 'org.postgresql:postgresql:42.2.11'
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.27'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	annotationProcessor "org.projectlombok:lombok:1.18.20"
+	implementation 'org.projectlombok:lombok:1.18.20'
+	// implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+    // implementation "io.springfox:springfox-boot-starter:${springfoxVersion}"
+}
+
+test {
+	useJUnitPlatform()
+}

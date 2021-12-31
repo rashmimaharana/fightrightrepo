@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+	crossorigin="anonymous">
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.3/css/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.3/perfect-scrollbar.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" charset="utf-8"></script>
+<script th:src="@{/js/caseprocessing.js}"></script>
+<link rel="stylesheet" th:href="@{/css/dashboard.css}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+<title>FEIGHTRIGHT Dashboard page</title>
+<style>
+body {
+	background-color: #fafafa;
+}
+</style>
+</head>
+
+<body>
+	
+	<!-- Error Modal starts -->
+	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content" id="error-modal">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="errorModalLabel">Invalid or Insufficient fields</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Please provide all mandatory fields marked as red
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- Error Modal ends -->
+	
+	<!-- Preview modal starts -->
+	<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="previewModalTitle">Please check before submitting the form</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="container-fluid">
+	      		<div class="row">
+	      			Client/Claimant Info:
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Clinet Name<br>
+      					<span class="preview-case-processing" id="client-name-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">Email<br>
+						<span class="preview-case-processing" id="client-email-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">District<br>
+      					<span class="preview-case-processing" id="client-district-preview">Fight right test</span>
+      				</div>
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Address Line 1<br>
+      					<span class="preview-case-processing" id="client-address-line-1-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">Phone No<br>
+						<span class="preview-case-processing" id="client-phone-no-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">Police Station<br>
+      					<span class="preview-case-processing" id="client-police-station-preview">Fight right test</span>
+      				</div>
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Address Line 2<br>
+      					<span class="preview-case-processing" id="client-address-line-2-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">State<br>
+						<span class="preview-case-processing" id="client-state-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">Pin Code<br>
+      					<span class="preview-case-processing" id="client-pin-code-preview">Fight right test</span>
+      				</div>      				
+	      		</div>
+	      		
+	      		<br>
+	      		<div class="row">
+	      			Tenant Info:
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Tenant Name<br>
+      					<span class="preview-case-processing" id="tenant-name-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">Email<br>
+						<span class="preview-case-processing" id="tenant-email-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">District<br>
+      					<span class="preview-case-processing" id="tenant-district-preview">Fight right test</span>
+      				</div>
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Address Line 1<br>
+      					<span class="preview-case-processing" id="tenant-address-line-1-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">Phone No<br>
+						<span class="preview-case-processing" id="tenant-phone-no-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">Police Station<br>
+      					<span class="preview-case-processing" id="tenant-police-station-preview">Fight right test</span>
+      				</div>
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Address Line 2<br>
+      					<span class="preview-case-processing" id="tenant-address-line-2-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">State<br>
+						<span class="preview-case-processing" id="tenant-state-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">Pin Code<br>
+      					<span class="preview-case-processing" id="tenant-pin-code-preview">Fight right test</span>
+      				</div>      				
+	      		</div>
+	      		
+	      		<br>
+	      		<div class="row">
+	      			Property Description :
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Description<br>
+      					<span class="preview-case-processing" id="property-description-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">District<br>
+						<span class="preview-case-processing" id="property-district-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">Address Line 1<br>
+      					<span class="preview-case-processing" id="property-address-line-1-preview">Fight right test</span>
+      				</div>
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">State<br>
+      					<span class="preview-case-processing" id="property-state-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">Police Station<br>
+						<span class="preview-case-processing" id="property-police-station-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">Address Line 2<br>
+      					<span class="preview-case-processing" id="property-address-line-2-preview">Fight right test</span>
+      				</div>
+	      		</div>
+	      		
+	      		<br>
+	      		<div class="row">
+	      			Agreement Details :
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Act Applicable<br>
+      					<span class="preview-case-processing" id="act-applicable-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">Monthly Rent<br>
+						<span class="preview-case-processing" id="monthly-rent-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">Residential/ Commercial<br>
+      					<span class="preview-case-processing" id="residential-Commercial-preview">Fight right test</span>
+      				</div>
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Tenure Date From<br>
+      					<span class="preview-case-processing" id="tenure-date-from-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">Additional Payables<br>
+						<span class="preview-case-processing" id="additional-payables-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">Sub-let: Yes/No<br>
+      					<span class="preview-case-processing" id="sub-let-preview">Fight right test</span>
+      				</div>
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Commencement of tenancy<br>
+      					<span class="preview-case-processing" id="commencement-of-tenancy-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">Bills Raised receipted<br>
+						<span class="preview-case-processing" id="bills-raised-receipted-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">In which name is the rent receipt issued<br>
+      					<span class="preview-case-processing" id="rent-receipt-issued-name-preview">Fight right test</span>
+      				</div>
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Any special rights apart from space:<br>
+      					<span class="preview-case-processing" id="special-rights-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">Bill Amount<br>
+						<span class="preview-case-processing" id="bill-amount-preview">Fight right test</span>
+					</div>
+      				<div class="col-md-4 preview-case-processing-head">Agreement, If Any<br>
+      					<span class="preview-case-processing" id="agreement-if-any-preview">Fight right test</span>
+      				</div>
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head" title="Original tenant alive & still in occupation or someone else occupying the premises:">Original tenant alive & still in occupation...<br>
+      					<span class="preview-case-processing" id="tenant-alive-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">Rent Paid To<br>
+						<span class="preview-case-processing" id="rent-paid-to-preview">Fight right test</span>
+					</div>
+	      		</div>
+	      		
+	      		<br>
+	      		<div class="row">
+	      			Violation of tenancy section :
+	      		</div>
+	      		<div class="row preview-case-processing-container">
+      				<div class="col-md-4 preview-case-processing-head">Violation<br>
+      					<span class="preview-case-processing" id="violation-preview">Fight right test</span>
+      				</div>
+      				<div class="col-md-4 preview-case-processing-head">Violation Date<br>
+						<span class="preview-case-processing" id="violation-date-preview">Fight right test</span>
+					</div>
+	      		</div>
+	      		
+	      	</div>
+      	  </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" onclick="submitCaseProcessing()">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- Preview modal ends -->
+	
+	<div class="col-md-12 header-section">
+		<div class="header-content col-md-12">
+			<div class="col-md-6">
+				<img class="logo-img" th:src='@{/image/logo.png}' alt='' />
+			</div>
+
+			<div class="col-md-6 header-profile">
+				<div class="col-md-4">
+					<i class="fa fa-bell"></i>
+				</div>
+				<div class="col-md-4">
+					<img class="profile-img" th:src='@{/image/profile-pic.jpg}' alt='' />
+				</div>
+				<div class="col-md-4">
+					<div class="dropdown">
+						<button class="dropbtn">Sujeet</button>
+						<div class="dropdown-content">
+							<a href="#">Profile</a> <a href="#">Settings</a> <a href="/logout">Logout</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- start wrapper -->
+	<div class="wrapper">
+		<nav id="sidebar">
+			<!-- <div class="sidebar-header">
+        <h3>jQueryScript</h3>
+      </div> -->
+			<ul class="lisst-unstyled components">
+				<!-- <p>Menu List</p> -->
+				<li><a href="#">Dashboard</a></li>
+				<li><a href="#">Celendar</a></li>
+
+				<li class="active"><a href="#case" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle"> Case </a>
+					<ul class="collapse lisst-unstyled" id="case">
+						<li><a href="#">Add Case</a></li>
+						<li><a href="#">View Case</a></li>
+					</ul></li>
+
+				<li class="active"><a href="#document" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle"> Document </a>
+					<ul class="collapse lisst-unstyled" id="document">
+						<li><a href="#">Add Document</a></li>
+						<li><a href="#">View Document</a></li>
+					</ul></li>
+
+				<li class="active"><a href="#order" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle"> Order </a>
+					<ul class="collapse lisst-unstyled" id="order">
+						<li><a href="#">Add Order</a></li>
+						<li><a href="#">View Order</a></li>
+					</ul></li>
+
+				<li class="active"><a href="#hearing" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle"> Hearing </a>
+					<ul class="collapse lisst-unstyled" id="hearing">
+						<li><a href="#">Add Hearing</a></li>
+						<li><a href="#">View Hearing</a></li>
+					</ul></li>
+
+				<li class="active"><a href="#toDo" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle"> Todo </a>
+					<ul class="collapse lisst-unstyled" id="toDo">
+						<li><a href="#">Add Todo</a></li>
+						<li><a href="#">View Todo</a></li>
+					</ul></li>
+
+				<li class="active"><a href="#caseProcessing" data-toggle="collapse"
+					aria-expanded="true" class="dropdown-toggle sidebar-dropdown-toggle"> Case Processing </a>
+					<ul class="collapse lisst-unstyled show" id="caseProcessing">
+						<li><a href="#" onclick="navBarClick('add-case-processing')">Add Case Processing</a></li>
+						<li><a href="#" onclick="navBarClick('my-assigned-task')">My Assigned Task</a></li>
+					</ul></li>
+				<li><a href="#">Ecourts</a></li>
+			</ul>
+		</nav>
+
+		<div id="content">
+			<nav class="navbar navbar-expand-lg">
+				<div class="container-fluid">
+					<button type="button" id="sidebarCollapse" class="btn btn-white">
+						<i class="fas fa-bars"></i>
+						<!-- <span> Toggle Sidebar</span> -->
+					</button>
+				</div>
+			</nav>
+			
+			
+			<!-- Add case processing startss -->
+			<div class="col-md-12 fight-right-content" id="add-case-processing">
+				<form id="first_form" method="post" action="">
+
+					<div class="row form-header">
+						<span>Client/Claimant Info:</spanp>
+					</div>
+
+
+					<div class="row">
+
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="client-name" class="label-text">Client Name</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="client-name" class="form-field-content"
+									name="client-name"></input>
+							</div>
+						</div>
+
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="client-email" class="label-text">Email</label>
+							</div>
+							<div class="col-md-12">
+								<input type="email" id="client-email" class="form-field-content"
+									name="client-email"></input>
+							</div>
+						</div>
+
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="client-district" class="label-text">District</label>
+							</div>
+							<div class="col-md-12">
+								<select name='client-district' id="client-district"
+									class="form-field-content-select" size='1' onchange = "onDistrictChange(this)">
+									<option value=''>Select State First...</option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div class="row">
+
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="client-address-line-1" class="label-text">Address
+									Line 1</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="client-address-line-1"
+									class="form-field-content" name="client-address-line-1"></input>
+							</div>
+						</div>
+
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="client-phone-no" class="label-text">Phone No</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="client-phone-no" class="form-field-content"
+									name="client-phone-no"></input>
+							</div>
+						</div>
+
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="client-police-station" class="label-text">Police Station</label>
+							</div>
+							<div class="col-md-12">
+								<select name='client-police-station' id="client-police-station"
+									class="form-field-content-select" size='1'>
+									<option value=''>Select District First...</option>									
+								</select>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row">
+
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="client-address-line-2" class="label-text">Address
+									Line 2</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="client-address-line-2"
+									class="form-field-content" name="client-address-line-2"></input>
+							</div>
+						</div>
+
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="client-state" class="label-text">State</label>
+							</div>
+							<div class="col-md-12">
+								<select name='client-state' id="client-state"
+									class="form-field-content-select" size='1' onchange = "onStateChange(this)">
+									<option value=''>Select ...</option>
+									<option value='Odisha'>Odisha</option>
+									<option value='Telangana'>Telangana</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="client-pin-code" class="label-text">Pin Code</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="client-pin-code" class="form-field-content"
+									name="client-pin-code"></input>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row form-header">
+						<span>Tenant Info:</spanp>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="tenant-name" class="label-text">Tenant Name</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="tenant-name" class="form-field-content"
+									name="tenant-name"></input>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="tenant-email" class="label-text">Email</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="tenant-email" class="form-field-content"
+									name="tenant-email"></input>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="tenant-district" class="label-text">District</label>
+							</div>
+							<div class="col-md-12">
+								<select name='tenant-district' id="tenant-district"
+									class="form-field-content-select" size='1' onchange = "onDistrictChange(this)">
+									<option value=''>Select ...</option>
+									<option value='Khorda'>Khorda</option>
+									<option value='Cuttack'>Cuttack</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="tenant-address-line-1" class="label-text">Address
+									Line 1</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="tenant-address-line-1"
+									class="form-field-content" name="tenant-address-line-1"></input>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="tenant-phone-no" class="label-text">Phone
+									No.</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="tenant-phone-no"
+									class="form-field-content" name="tenant-phone-no"></input>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="tenant-police-station" class="label-text">Police
+									Station</label>
+							</div>
+							<div class="col-md-12">
+								<select name='tenant-police-station' id="tenant-police-station"
+									class="form-field-content-select" size='1'>
+									<option value=''>Select ...</option>
+									<option value='Khorda'>Khorda</option>
+									<option value='Cuttack'>Cuttack</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="tenant-address-line-2" class="label-text">Address
+									Line 2</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="tenant-address-line-2"
+									class="form-field-content" name="tenant-address-line-2"></input>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="tenant-state" class="label-text">State</label>
+							</div>
+							<div class="col-md-12">
+								<select name='tenant-state' id="tenant-state"
+									class="form-field-content-select" size='1' onchange = "onStateChange(this)">
+									<option value=''>Select ...</option>
+									<option value='Khorda'>Odisha</option>
+									<option value='Cuttack'>Cuttack</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="tenant-pin-code" class="label-text">Pin Code</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="tenant-pin-code"
+									class="form-field-content" name="tenant-pin-code"></input>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="row form-header">
+						<span>Property Description :</spanp>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="property-description" class="label-text">Description
+									:</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="property-description"
+									class="form-field-content" name="property-description"></input>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="property-district" class="label-text">District</label>
+							</div>
+							<div class="col-md-12">
+								<select name='property-district' id="property-district"
+									class="form-field-content-select" size='1' onchange = "onDistrictChange(this)">
+									<option value=''>Select ...</option>
+									<option value='Khorda'>Khorda</option>
+									<option value='Cuttack'>Cuttack</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="property-address-line-1" class="label-text">Address
+									Line 1</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="property-address-line-1"
+									class="form-field-content" name="property-address-line-1"></input>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="property-state" class="label-text">State</label>
+							</div>
+							<div class="col-md-12">
+								<select name='property-state' id="property-state"
+									class="form-field-content-select" size='1' onchange = "onStateChange(this)">
+									<option value=''>Select ...</option>
+									<option value='Khorda'>Khorda</option>
+									<option value='Cuttack'>Cuttack</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="property-police-station" class="label-text">Police
+									Station</label>
+							</div>
+							<div class="col-md-12">
+								<select name='property-police-station'
+									id="property-police-station" class="form-field-content-select"
+									size='1'>
+									<option value=''>Select ...</option>
+									<option value='Khorda'>Khorda</option>
+									<option value='Cuttack'>Cuttack</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="property-address-line-2" class="label-text">Address
+									Line 2</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="property-address-line-2"
+									class="form-field-content" name="property-address-line-2"></input>
+							</div>
+						</div>
+					</div>
+
+					<div class="row form-header">
+						<span>Agreement Details :</spanp>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="act-applicable" class="label-text">Act
+									Applicable</label>
+							</div>
+							<div class="col-md-12">
+								<select name='act-applicable' id="act-applicable"
+									class="form-field-content-select" size='1'>
+									<option value=''>Select ...</option>
+									<option value='Lease'>Lease</option>
+									<option value='Telangana'>Tenancy</option>
+									<option value='LEAVE LICENSE'>LEAVE LICENSE</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="monthly-rent" class="label-text">Monthly
+									Rent</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="monthly-rent" class="form-field-content"
+									name="monthly-rent"></input>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="residential-commercial" class="label-text">Residential/
+									Commercial</label>
+							</div>
+							<div class="col-md-12">
+								<select name='residential-commercial'
+									id="residential-commercial" class="form-field-content-select"
+									size='1'>
+									<option value=''>Select ...</option>
+									<option value='Residential'>Residential</option>
+									<option value='Commercial'>Commercial</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="tenure-date-from" class="label-text">Tenure
+									Date From</label>
+							</div>
+							<div class="col-md-12">
+								<div class='input-group date tenure-date-from date-field-container'>
+                					<input type='text' class="form-control date-field date-field-container-data" id='tenure-date-from'/>
+                					<span class="input-group-addon">
+                						<span class="fa fa-calendar"></span>
+                					</span>
+             					</div>							
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="additional-payables" class="label-text">Additional
+									Payables</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="additional-payables"
+									class="form-field-content" name="additional-payables"></input>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="sub-let" class="label-text">Sub-let: Yes/No</label>
+							</div>
+							<div class="col-md-12">
+								<select name='sub-let' id="sub-let"
+									class="form-field-content-select" size='1'>
+									<option value=''>Select ...</option>
+									<option value='Yes'>Yes</option>
+									<option value='No'>No</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="commencement-of-tenancy" class="label-text">Commencement
+									of tenancy:</label>
+							</div>
+							<div class="col-md-12">
+								<div class='input-group date commencement-of-tenancy date-field-container'>
+                					<input type='text' class="form-control date-field date-field-container-data" id='commencement-of-tenancy'/>
+                					<span class="input-group-addon">
+                						<span class="fa fa-calendar"></span>
+                					</span>
+             					</div>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="bills-raised-receipted" class="label-text">Bills
+									Raised receipted</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="bills-raised-receipted"
+									class="form-field-content" name="bills-raised-receipted"></input>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="rent-receipt-issued-name" class="label-text">In
+									which name is the rent receipt issued</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="rent-receipt-issued-name"
+									class="form-field-content" name="rent-receipt-issued-name"></input>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="special-rights" class="label-text">Any
+									special rights apart from space:</label>
+							</div>
+							<div class="col-md-12">
+								<select name='special-rights' id="special-rights"
+									class="form-field-content-select" size='1'>
+									<option value=''>Select ...</option>
+									<option value='Yes'>Yes</option>
+									<option value='No'>No</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="bill-amount" class="label-text">Bill Amount</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="bill-amount" class="form-field-content"
+									name="bill-amount"></input>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="agreement-if-any" class="label-text">Agreement,
+									If Any</label>
+							</div>
+							<div class="col-md-12">
+								<select name='agreement-if-any' id="agreement-if-any"
+									class="form-field-content-select" size='1'>
+									<option value=''>Select ...</option>
+									<option value='Yes'>Yes</option>
+									<option value='No'>No</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="tenant-alive" class="label-text" 
+								title="Original tenant alive & still in occupation or someone else occupying the premises:">
+								Original tenant alive & still in occupation...</label>
+							</div>
+							<div class="col-md-12">
+								<select name='tenant-alive' id="tenant-alive"
+									class="form-field-content-select" size='1'>
+									<option value=''>Select ...</option>
+									<option value='Yes'>Yes</option>
+									<option value='No'>No</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="rent-paid-to" class="label-text">Rent Paid
+									To</label>
+							</div>
+							<div class="col-md-12">
+								<select name='rent-paid-to' id="rent-paid-to"
+									class="form-field-content-select" size='1'>
+									<option value=''>Select ...</option>
+									<option value='Yes'>Yes</option>
+									<option value='No'>No</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row form-header">
+						<span>Violation of tenancy section:</spanp>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="violation" class="label-text">Violation</label>
+							</div>
+							<div class="col-md-12">
+								<input type="text" id="violation" class="form-field-content"
+									name="violation"></input>
+							</div>
+						</div>
+						<div class="col-md-4 form-field">
+							<div class="col-md-12">
+								<label for="violation-date" class="label-text">Violation Date</label>
+							</div>
+							<div class="col-md-12">
+								<div class='input-group date violation-date date-field-container'>
+                					<input type='text' class="form-control date-field date-field-container-data" id='violation-date'/>
+                					<span class="input-group-addon">
+                						<span class="fa fa-calendar"></span>
+                					</span>
+             					</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<input type="submit" value="Submit" />
+					</div>
+				</form>
+			</div>
+			<!-- Add case processing ends -->
+			
+			<!-- my assigned task starts -->
+			<div class="col-md-12 fight-right-content" id="my-assigned-task">
+				<div class="row form-header">
+					<span>My Assigned Task:</spanp>
+				</div>
+				
+				<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th class="th-sm">
+	  	<input type="checkbox" id="select-all-row" name="select-all-row">
+	  </th>
+      <th class="th-sm">My FR UUID</th>
+      <th class="th-sm">Client Name</th>
+      <th class="th-sm">Client Email</th>
+      <th class="th-sm">Client Phone No</th>
+      <th class="th-sm">Client Details</th>
+      <th class="th-sm">Status</th>
+      <th class="th-sm">Active</th>
+    </tr>
+  </thead>
+  <tbody id="my-assigned-task-tbody">     
+  </tbody>
+<!--   <tfoot>
+    <tr>
+      <th>Name
+      </th>
+      <th>Position
+      </th>
+      <th>Office
+      </th>
+      <th>Age
+      </th>
+      <th>Start date
+      </th>
+      <th>Salary
+      </th>
+    </tr>
+  </tfoot> -->
+</table>
+			
+			
+			</div>	
+			<!-- my assigned task ends -->
+
+
+		</div>
+
+	</div>
+	<!-- wrapper and -->
+
+	<script>
+		$(document).ready(function() {
+							$("#sidebarCollapse").on('click', function() {
+								$("#sidebar").toggleClass('active');
+							});
+							
+							$(".fight-right-content").hide();
+							$("#add-case-processing").show();
+
+							$('#first_form')
+							.submit(
+									function(e) {
+										e.preventDefault();
+										$(".error").remove();
+										populateCaseProcessingData();										
+										
+										validateName('#client-name', 'Client');
+										validateEmail('#client-email');
+										validateDistrict('#client-district');
+										validateAddressLine1('#client-address-line-1');
+										validateAddressLine2('#client-address-line-2');
+										validatePhoneNo('#client-phone-no');
+										validatePoliceStation('#client-police-station');
+										validateState('#client-state');
+										validatePinCode('#client-pin-code');
+										
+										validateName('#tenant-name', 'Client');
+										validateEmail('#tenant-email');
+										validateDistrict('#tenant-district');
+										validateAddressLine1('#tenant-address-line-1');
+										validateAddressLine2('#tenant-address-line-2');
+										validatePhoneNo('#tenant-phone-no');
+										validatePoliceStation('#tenant-police-station');
+										validateState('#tenant-state');
+										validatePinCode('#tenant-pin-code');
+										
+										validateAmount('#bill-amount', 'Bill Amount');
+										validateAmount('#monthly-rent', 'Monthly Rent');
+										validateResident('#residential-commercial');
+										validateName('#bills-raised-receipted', 'Receipted');
+										validateDateField('#tenure-date-from');
+										validateDateField('#commencement-of-tenancy');
+										
+										showErrorOrPreviewModal();
+								
+									});
+
+							
+							populateStates();	
+							
+							/* $('#dtBasicExample').DataTable({
+							    "paging": true,
+							    "columnDefs": [ {
+							        'targets': [0,6], 
+							        'orderable': false,
+							     }]
+							  });
+							$('.dataTables_length').addClass('bs-select'); */
+							 
+							  
+							  
+						});
+		
+							
+								
+		 $(function () {
+             // $('#tenure-date-from').datepicker();
+             $('.tenure-date-from').each(function() {
+             var minDate = new Date();
+             minDate.setHours(0);
+             minDate.setMinutes(0);
+             minDate.setSeconds(0,0);
+             
+             var $picker = $(this);
+             $picker.datepicker({
+            	   format: 'yyyy-mm-dd'
+             });
+             
+             var pickerObject = $picker.data('datepicker');
+             
+             $picker.on('changeDate', function(ev){
+                 $picker.datepicker('hide');
+             });
+         	});
+             
+             $('.commencement-of-tenancy').each(function() {
+                 var minDate = new Date();
+                 minDate.setHours(0);
+                 minDate.setMinutes(0);
+                 minDate.setSeconds(0,0);
+                 
+                 var $picker = $(this);
+                 $picker.datepicker({
+                	   format: 'yyyy-mm-dd'
+                 });
+                 
+                 var pickerObject = $picker.data('datepicker');
+                 
+                 $picker.on('changeDate', function(ev){
+                     $picker.datepicker('hide');
+                 });
+             	});
+             
+             $('.violation-date').each(function() {
+                 var minDate = new Date();
+                 minDate.setHours(0);
+                 minDate.setMinutes(0);
+                 minDate.setSeconds(0,0);
+                 
+                 var $picker = $(this);
+                 $picker.datepicker({
+                	   format: 'yyyy-mm-dd'
+                 });
+                 
+                 var pickerObject = $picker.data('datepicker');
+                 
+                 $picker.on('changeDate', function(ev){
+                     $picker.datepicker('hide');
+                 });
+             	});
+         });
+	</script>
+
+</body>
+</html>

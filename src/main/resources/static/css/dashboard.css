@@ -1,0 +1,290 @@
+* {
+  list-style: none;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+}
+
+p {
+  font-family: 'Inter', sans-serif;
+}
+
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.4s;
+}
+
+/* Side Bar */
+.wrapper {
+  display: flex;
+  text-decoration: none;
+  transition: all 0.4s;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background: #fff;
+  color: rgb(133, 148, 184);
+  transition: all 0.4s;
+  height: 100vh;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #1b1d24;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  /* border-bottom: 1px solid #47748b; */
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  /* color: #262933;
+  background: #fff; */
+  background: #fff;
+  color: rgb(133, 148, 184);
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+  /* color: #fff;
+  background: #1b1d24; */
+  background: #fff;
+  color: rgb(133, 148, 184);
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  transform: translateY(-50%);
+}
+
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: #fff;
+  /* background: #1b1d24; */
+}
+
+#content {
+  width: 100%;
+  padding: 20px;
+  min-width: height 100vh;
+  transition: all 0.4s;
+}
+
+#content h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#content p {
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -250px;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+
+  #sidebarCollapse span {
+    display: none;
+  }
+
+  #sidebarCollapse {
+    background: #fff;
+    color: rgb(133, 148, 184);
+  }
+}
+
+/* my css */
+.header-section {
+  height: 90px;
+  /* border: 1px solid; */
+}
+
+.header-content{
+  justify-content: space-between;
+  display: flex;
+  padding-top: 20px;
+}
+
+.logo-img{
+  text-align: center;
+  height: 35px;
+}
+
+.header-profile {
+  display: inherit;
+}
+
+.profile-img{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.dropbtn {
+  background-color: #fff;
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #fff;}
+
+/* form css */
+
+form label {
+  display: inline-block;
+  width: 100px;
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  margin-left: 5px;
+  font-size: 0.7rem;
+}
+
+label.label-text {
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+label.error {
+  display: inline;
+}
+
+.form-field {
+  display: inline-block;
+}
+
+.form-field-content {
+  color: #babec3;
+  background-color: #f9fafc;
+  border: 1px solid #ced4da;
+  width: 100%;
+}
+
+.form-field-content-error {
+  background-color: #faeded !important;
+}
+
+#error-modal {
+  background-color: #faeded;
+  color: red;
+}
+
+.form-field-content:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+
+.form-field-content-select {
+  color: #babec3;
+  background-color: #f9fafc;
+  border: 1px solid #ced4da;
+  height: 28px;
+  width: 100%;
+}
+
+.form-header{
+  padding-left: 27px;
+}
+
+.date-field {
+	height: 100%;
+}
+
+.date-field-container{
+	height: 28px;
+}
+
+.preview-case-processing-container{
+	padding-bottom: 10px;
+}
+
+.preview-case-processing-head {
+	font-size : 16px;
+}
+
+.preview-case-processing{
+	font-size : 14px;
+	color: #212529;
+}
+
+.date-field-container-data {
+	width: 92% !important;
+}
+
+/* .active{
+    background-color: rgb(9, 178, 240);
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    color: #fff;
+} */
