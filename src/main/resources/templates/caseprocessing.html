@@ -264,13 +264,13 @@ body {
 			</div>
 
 			<div class="col-md-6 header-profile">
-				<div class="col-md-4">
+				<div class="col-md-1 header-profile-icon">
 					<i class="fa fa-bell"></i>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-1 header-profile-image">
 					<img class="profile-img" th:src='@{/image/profile-pic.jpg}' alt='' />
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-3 header-profile-name">
 					<div class="dropdown">
 						<button class="dropbtn">Sujeet</button>
 						<div class="dropdown-content">
@@ -295,42 +295,42 @@ body {
 				<li><a href="#">Celendar</a></li>
 
 				<li class="active"><a href="#case" data-toggle="collapse"
-					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle"> Case </a>
+					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle" onclick="highLightDropDownClass(this)"> Case </a>
 					<ul class="collapse lisst-unstyled" id="case">
 						<li><a href="#">Add Case</a></li>
 						<li><a href="#">View Case</a></li>
 					</ul></li>
 
 				<li class="active"><a href="#document" data-toggle="collapse"
-					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle"> Document </a>
+					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle" onclick="highLightDropDownClass(this)"> Document </a>
 					<ul class="collapse lisst-unstyled" id="document">
 						<li><a href="#">Add Document</a></li>
 						<li><a href="#">View Document</a></li>
 					</ul></li>
 
 				<li class="active"><a href="#order" data-toggle="collapse"
-					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle"> Order </a>
+					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle" onclick="highLightDropDownClass(this)"> Order </a>
 					<ul class="collapse lisst-unstyled" id="order">
 						<li><a href="#">Add Order</a></li>
 						<li><a href="#">View Order</a></li>
 					</ul></li>
 
 				<li class="active"><a href="#hearing" data-toggle="collapse"
-					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle"> Hearing </a>
+					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle" onclick="highLightDropDownClass(this)"> Hearing </a>
 					<ul class="collapse lisst-unstyled" id="hearing">
 						<li><a href="#">Add Hearing</a></li>
 						<li><a href="#">View Hearing</a></li>
 					</ul></li>
 
 				<li class="active"><a href="#toDo" data-toggle="collapse"
-					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle"> Todo </a>
+					aria-expanded="false" class="dropdown-toggle sidebar-dropdown-toggle" onclick="highLightDropDownClass(this)"> Todo </a>
 					<ul class="collapse lisst-unstyled" id="toDo">
 						<li><a href="#">Add Todo</a></li>
 						<li><a href="#">View Todo</a></li>
 					</ul></li>
 
 				<li class="active"><a href="#caseProcessing" data-toggle="collapse"
-					aria-expanded="true" class="dropdown-toggle sidebar-dropdown-toggle"> Case Processing </a>
+					aria-expanded="true" class="dropdown-toggle sidebar-dropdown-toggle sidebar-dropdown-toggle-active" onclick="highLightDropDownClass(this)"> Case Processing </a>
 					<ul class="collapse lisst-unstyled show" id="caseProcessing">
 						<li><a href="#" onclick="navBarClick('add-case-processing')">Add Case Processing</a></li>
 						<li><a href="#" onclick="navBarClick('my-assigned-task')">My Assigned Task</a></li>

@@ -441,3 +441,8 @@ function navBarClick(id){
 		populateCaseProcessing();
 	}
 }
+
+function highLightDropDownClass(elem) {
+	$(".sidebar-dropdown-toggle").removeClass("sidebar-dropdown-toggle-active");
+	$(elem).addClass("sidebar-dropdown-toggle-active");
+}
