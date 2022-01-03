@@ -224,6 +224,7 @@ function populateCaseProcessing(){
 			
 			$("#my-assigned-task-tbody").empty();
 			$("#my-assigned-task-tbody").append(tbodyElem);
+			$('#dtBasicExample').dataTable().fnDestroy();
 			
 			$('#dtBasicExample').DataTable({
 							    "paging": true,
