@@ -227,6 +227,7 @@ function populateCaseProcessing(){
 			
 			$('#dtBasicExample').DataTable({
 							    "paging": true,
+								"bDestroy": true,
 							    "columnDefs": [ {
 							        'targets': [0,6], 
 							        'orderable': false,
